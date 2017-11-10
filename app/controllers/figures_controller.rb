@@ -10,12 +10,12 @@ class FiguresController < ApplicationController
   post '/figures' do
     @figure = Figure.create(params[:figure])
 
-    if !params[:title][:name].empty?
-        @figure.titles << Title.create(params[:title])
+    if !params[:title][:name].empty? #add title associated w/ figure if exists
+      @figure.titles << Title.create(params[:title])
     end
 
-    if !params[:landmark][:name].empty?
-        @figure.landmarks << Landmark.create(params[:landmark])
+    if !params[:landmark][:name].empty?  #add landmark associated w/ figure if exists
+      @figure.landmarks << Landmark.create(params[:landmark])
     end
 
     @figure.save
@@ -46,12 +46,12 @@ class FiguresController < ApplicationController
     @figure.update(params[:figure])
 
     if !params[:landmark][:name].empty?
-        @figure.landmarks << Landmark.create(params[:landmark])
-      end
+      @figure.landmarks << Landmark.create(params[:landmark]) #add landmark associated w/ figure if exists
+    end
 
-      if !params[:title][:name].empty?
-        @figure.titles << Title.create(params[:title])
-      end
+    if !params[:title][:name].empty? #add title associated w/ figure if exists
+      @figure.titles << Title.create(params[:title])
+    end
 
     @figure.save
 
